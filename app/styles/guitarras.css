@@ -1,0 +1,79 @@
+.guitarras-grid {
+    display: grid;
+    grid-template-columns:  1fr;
+    gap: 4rem;
+}
+@media (min-width: 768px) {
+    .guitarras-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 992px) {
+    .guitarras-grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.guitarra {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /*guitarra con 2/5 y texto con 3/5 */
+    gap: 1rem;
+    align-items: center;            /*centra verticalmente los elementos */
+    max-width: 70rem;               /*ajusta el ancho maximo cuando se muestra solo una guitarra*/
+    margin: 0 auto;                 /*centra el contenedor*/
+}
+.guitarra .contenido{
+    padding: 1rem;
+}
+
+.guitarra .contenido h3{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+.guitarra .descripcion{             /*descripcion de la guitarra*/
+    display: -webkit-box;          /* permite usar propiedades webkit*/
+    -webkit-box-orient: vertical;   /*orienta de forma vertical*/
+    -webkit-line-clamp: 6;          /*limita a 4 las lineas dentro del web-kit*/
+    overflow:hidden;                /*las lineas "sobrantes" las oculta*/
+    font-size: 1.8rem;
+}
+
+.guitarra .precio{
+    color: var(--primary);  
+    font-size: 4rem;
+    margin: 0;
+    font-weight: 900;               /*cambia a naraja y a negritas el precio*/
+}
+.guitarra .enlace:hover{
+    background-color: var(--primary);
+}
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+.formulario label{
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+.formulario select {                /*Estilos al select*/
+    text-align: center;
+    padding:1rem;
+    border: 1px solid var(--black);
+    border-radius: 1rem;
+}
+.formulario input[type="submit"] {  /*estilos al botón*/
+    margin-top: 3rem;
+    background-color: var(--black);
+    color: var(--white);
+    text-transform: uppercase;
+    padding: 1.4rem;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: 300ms;
+}
+.formulario input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: var(--primary);
+}

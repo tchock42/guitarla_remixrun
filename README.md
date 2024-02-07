@@ -1,38 +1,32 @@
-# Welcome to Remix!
+# GuitarLA en remix
 
-- [Remix Docs](https://remix.run/docs)
+Este proyecto fue construido en remix-run y realizado el backend en strapi con almacenamiento de imágenes en cloudinary
 
 ## Development
 
-From your terminal:
+Desde la terminal:
 
 ```sh
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Comenzar la app en modo de desarrollo
 
 ## Deployment
-
-First, build your app for production:
+Hacer el build del proyecto
 
 ```sh
 npm run build
 ```
-
-Then run the app in production mode:
+Correr en modo producción
 
 ```sh
 npm start
 ```
 
-Now you'll need to pick a host to deploy it to.
-
 ### DIY
 
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
+Carpetas para hacer deployment
 
 - `build/`
 - `public/build/`

@@ -1,0 +1,11 @@
+.nosotros .contenido{
+    display: grid;                  /*activa grid*/
+    grid-template-columns: 1fr;     /*1 fraccion*/
+    gap: 5rem;
+}
+@media (min-width: 768px) {
+    .nosotros .contenido{
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }    
+}

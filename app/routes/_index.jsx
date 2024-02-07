@@ -1,36 +1,81 @@
-export const meta = () => {
-  return [{ title: "New Remix App" }];
-};
+import { useLoaderData } from "@remix-run/react"
+import { getGuitarras } from "../models/guitarras.server"
+import { getPosts } from "../models/posts.server"
+import { getCurso } from "../models/curso.server"
+import ListadoGuitarras from "../components/listado-guitarras"
+import Curso from "../components/curso"
+import styles from '../styles/guitarras.css'
+import ListadoPosts from "../components/listado-posts"
+import stylesblog from '../styles/blog.css'
+import stylesCurso from '../styles/curso.css'
 
-export default function Index() {
-  return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+
+export function meta(){
+
 }
+
+export function links(){
+  return [
+    {
+      rel: 'stylesheet',
+      href: styles
+    },
+    {
+      rel: 'stylesheet',
+      href: stylesblog
+    },
+    {
+      rel: 'stylesheet',
+      href: stylesCurso
+    }
+  ]
+}
+
+export async function loader(){
+
+  const [guitarras, posts, curso] = await Promise.all([ //consulta guitarras y posts al mismo tiempo
+    getGuitarras(), 
+    getPosts(),
+    getCurso()
+  ])
+  // console.log(guitarras)
+  // console.log(posts)
+  // console.log(curso)
+
+  return {
+    guitarras: guitarras.data,
+    posts: posts.data,
+    curso: curso.data
+  }
+}
+function Index() {
+  const datos = useLoaderData();
+  
+  const {guitarras, posts, curso} = datos;
+  // console.log(guitarras)
+  // console.log(posts)
+  // console.log(curso)
+
+  return (
+
+    <>
+      <main className="contenedor">
+        <ListadoGuitarras
+          guitarras={guitarras}
+        />
+      </main>
+
+      <Curso
+        curso={curso}
+      />
+        {/**Se agrega los posts */}
+      <section className="contenedor">
+        <ListadoPosts
+          posts={posts}
+        />
+
+      </section>
+    </>
+  )
+}
+export default Index
